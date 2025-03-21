@@ -5,28 +5,28 @@ import { useState, useEffect } from 'react';
 export function Welcome() {
   const [currentTime, setCurrentTime] = useState(0);
 
-  // useEffect(() => {
-  //   fetch('http://localhost:5000/time').then(res => res.json()).then(data => {
-  //     setCurrentTime(data.time);
-  //   });
-  // }, []);
+  useEffect(() => {
+    fetch('http://localhost:8000/api/time').then(res => res.json()).then(data => {
+      setCurrentTime(data);
+    });
+  }, []);
 
-  fetch('http://localhost:5000/api/time', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log('Data received:', data);
-    // Do something with the data
-    setCurrentTime(data.time);
+  // fetch('http://localhost:8000/api/time', {
+  //   method: 'GET',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  // })
+  // .then(response => response.json())
+  // .then(data => {
+  //   console.log('Data received:', data);
+  //   // Do something with the data
+  //   setCurrentTime(data);
 
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
+  // })
+  // .catch((error) => {
+  //   console.error('Error:', error);
+  // });
 
   return (
     <main className="flex items-center justify-center pt-16 pb-4">
